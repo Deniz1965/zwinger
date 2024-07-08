@@ -24,7 +24,6 @@ describe("Negative Scenarios: Click the Search button and check the result", () 
         if (body.find(".show-more-button").length > 0) {
           cy.get(".show-more-button").should("be.visible").click();
           cy.log('Clicked the "Show more" button.');
-          // Wait for content to load before scrolling again
           cy.wait(1000);
           // Recursively call the function to check for the button again
           checkAndClickShowMoreButton();

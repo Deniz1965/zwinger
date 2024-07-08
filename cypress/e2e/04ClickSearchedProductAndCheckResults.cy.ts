@@ -13,10 +13,12 @@ describe('Click on the searched product and check the result ', () => {
     cy.wait(2000);
     cy.xpath(`//*[@class=\"search-form-suggestions"]`).should('exist').should('be.visible').click()
     cy.wait(4000);
-
+    cy.get('.navigation-active').should('have.text', "prerelease");
+       
     const expectedUrl = 'https://zwinger.pm.epages.com/p/variation';
     cy.url().then(currentUrl => {
-      const expectedUrl = 'https://zwinger.pm.epages.com/p/variation';
+
+      //const expectedUrl = 'https://zwinger.pm.epages.com/p/variation';
       if (currentUrl === expectedUrl) {
         cy.log('The opened page is the expected page.');
       } else {
