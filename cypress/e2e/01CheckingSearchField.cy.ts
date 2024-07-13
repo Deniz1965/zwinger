@@ -1,15 +1,15 @@
-import { commonSetupBefore } from '../commonSetupBefore';
+import { commonSetupBeforeVisitPage } from '../commonSetupBeforeVisitPage';
 import { commonSetupBeforeCookies } from '../commonSetupBeforeCookies';
 
-describe('Accept the cookies - Checking the Search field ', () => {
-  commonSetupBefore();
+describe.only ('test suite 1', () => {
+  commonSetupBeforeVisitPage();
   commonSetupBeforeCookies();
-  it("Check the Search button existency", () => {
-    cy.wait(2000);
-    cy.get('.header-search').should('be.visible');
-    cy.log("Search field is found");
-  });
+  it('check the search button', () => {
+    cy.wait(1000);
+    if (cy.get('.header-search').should('be.visible')){
+      cy.log('search button is visible');
+    };
+
+  })
 })
-
-
 

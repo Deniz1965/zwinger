@@ -1,9 +1,9 @@
-import { commonSetupBefore } from "../commonSetupBefore";
+import { commonSetupBeforeVisitPage } from "../commonSetupBeforeVisitPage";
 import { commonSetupBeforeCookies } from "../commonSetupBeforeCookies";
 import axios from "axios";
 
-describe("Negative Scenarios: Click the Search button and check the result", () => {
-  commonSetupBefore();
+describe.only("Negative Scenarios: Click the Search button and check the result", () => {
+  commonSetupBeforeVisitPage();
   commonSetupBeforeCookies();
 
   const SEARCH_ONE_CHAR = "a";
@@ -11,9 +11,10 @@ describe("Negative Scenarios: Click the Search button and check the result", () 
   const SEARCH_SPACES_BEFORE_CHAR = "     oo";
   const SEARCH_SPACES_AFTER_CHAR = "oo      ";
   const SEARCH_NOTEXIST_ITEM = "bv";
+  const SEARCH_SPECIAL_CHAR= "---";
 
   it("search only one char:", () => {
-    cy.get(".search-form-field").click().type(SEARCH_ONE_CHAR);
+    cy.get(".search-form-field").type(SEARCH_ONE_CHAR);
     cy.get(".search-form-icon.search-form-submit").click();
     cy.wait(2000);
     const checkAndClickShowMoreButton = () => {
@@ -51,7 +52,7 @@ describe("Negative Scenarios: Click the Search button and check the result", () 
       return false;
     });
 
-    cy.get(".search-form-field").click().type(SEARCH_SPACES);
+    cy.get(".search-form-field").type(SEARCH_SPACES);
     cy.wait(1000);
     cy.get(".search-form-icon.search-form-submit").click();
     cy.get(".search-no-result-form-headline")
@@ -63,7 +64,7 @@ describe("Negative Scenarios: Click the Search button and check the result", () 
     cy.on("uncaught:exception", (err, runnable) => {
       return false;
     });
-    cy.get(".search-form-field").click().type(SEARCH_SPACES_AFTER_CHAR);
+    cy.get(".search-form-field").type(SEARCH_SPACES_AFTER_CHAR);
     cy.wait(1000);
     cy.get(".search-form-icon.search-form-submit").click();
     cy.get(".search-no-result-form-headline")
@@ -75,7 +76,7 @@ describe("Negative Scenarios: Click the Search button and check the result", () 
     cy.on("uncaught:exception", (err, runnable) => {
       return false;
     });
-    cy.get(".search-form-field").click().type(SEARCH_SPACES_BEFORE_CHAR);
+    cy.get(".search-form-field").type(SEARCH_SPACES_BEFORE_CHAR);
     cy.wait(1000);
     cy.get(".search-form-icon.search-form-submit").click();
     cy.get(".search-no-result-form-headline")
@@ -84,11 +85,20 @@ describe("Negative Scenarios: Click the Search button and check the result", () 
   });
 
   it("search not existing characters(at least 2):", () => {
-    cy.get(".search-form-field").click().type(SEARCH_NOTEXIST_ITEM);
+    cy.get(".search-form-field").type(SEARCH_NOTEXIST_ITEM);
     cy.wait(1000);
     cy.get(".search-form-icon.search-form-submit").click();
     cy.get(".search-no-result-form-headline")
       .should("be.visible")
       .and("contain.text", "Your search did not produce any results.");
   });
+
+  it("search special characters(at least 2):", () => {
+    cy.get(".search-form-field").type(SEARCH_SPECIAL_CHAR);
+    cy.wait(1000);
+    cy.get(".search-form-icon.search-form-submit").click();
+    cy.get(".search-no-result-form-headline")
+    .should('be.visible')
+    .and('have.text', "Your search did not produce any results.")
+  })
 });

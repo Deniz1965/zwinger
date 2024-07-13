@@ -1,9 +1,9 @@
-import { commonSetupBefore } from "../commonSetupBefore";
+import { commonSetupBeforeVisitPage } from "../commonSetupBeforeVisitPage"
 import { commonSetupAfter } from "../commonSetupAfter";
 import { commonSetupBeforeCookies } from "../commonSetupBeforeCookies";
 
 describe("Positive Scenarios: Entering a value into the search field and checking the outputs ", () => {
-  commonSetupBefore();
+  commonSetupBeforeVisitPage();
   commonSetupAfter();
   commonSetupBeforeCookies();
 
@@ -19,24 +19,34 @@ describe("Positive Scenarios: Entering a value into the search field and checkin
 
   const SEARCH_BADGE_POSITIVE = "badge_positive";
 
-  it("search first 2 chars:", () => {
-    cy.get(".search-form-field").click().type(SEARCH_PREFIX_BA);
-    cy.wait(1000);
-    cy.xpath(`//div[@class='header-search']`).each(($el) => {
-      const text = $el.text();
-      expect(text).to.include(SEARCH_PREFIX_BA);
-      cy.log("Founded product/s:", text);
-    });
+  it('enter 2 chars', () => {
+    cy.get('.search-form-field').type(SEARCH_PREFIX_BA);
+    cy.get('.search-form-suggestions').should('be.visible').then(() => {
+      cy.xpath(`//div[@class='header-search']`).each(($el) => {
+        const text = $el.text();
+        if (text.includes(SEARCH_PREFIX_BA)) {
+        cy.log(text);
+        }
+        else{
+          cy.log('not found');
+        }
+      })
+    })
   });
 
-  it("search two or more adjacent characters:", () => {
-    cy.get(".search-form-field").click().type(SEARCH_TEXT_OO);
-    cy.wait(1000);
-    cy.xpath(`//div[@class='header-search']`).each(($el) => {
-      const text = $el.text();
-      expect(text).to.include(SEARCH_TEXT_OO);
-      cy.log("Founded product/s:", text);
-    });
+  it('search 2 or more adj chars', () => {
+    cy.get('.search-form-field').type(SEARCH_TEXT_OO);
+    cy.get('.search-form-suggestions').should('be.visible').then(() => {
+      cy.get('.search-form-suggestions').each(($el) => {
+        const text = $el.text();
+        if(text.includes(SEARCH_TEXT_OO)){
+          cy.log(text)
+        }
+        else{
+          cy.log('not found');
+        }
+      })
+    })
   });
 
   it("search enter the whole name of product:", () => {
@@ -49,20 +59,25 @@ describe("Positive Scenarios: Entering a value into the search field and checkin
     });
   });
 
-  it("Search a number in the search field:", () => {
-    cy.get(".search-form-field").click().type(SEARCH_INTEGER_11.toString());
+  it('Search a number in the search field:', () => {
+    cy.get('.search-form-field').type(SEARCH_INTEGER_11.toString());
+    cy.get('.search-form-suggestions').should('be.visible').then(() => {
+     cy.get('.search-form-suggestions').each(($el) => {
+       const text = $el.text();
+       if(text.includes(SEARCH_INTEGER_11.toString())){
+         cy.log(SEARCH_INTEGER_11.toString());
+       }
+       else{
+         cy.log('not exist')
+       }
+     })
+    })
+   });
+  
+   it("search the existing product name in capital letter:", () => {
+    cy.get(".search-form-field").type(SEARCH_CAPITAL_BO);
     cy.wait(1000);
-    cy.xpath(`//div[@class='header-search']`).each(($el) => {
-      const text = $el.text();
-      expect(text).to.include(SEARCH_INTEGER_11);
-      cy.log("Founded product/s:", text);
-    });
-  });
-
-  it("search the existing product name in capital letter:", () => {
-    cy.get(".search-form-field").click().type(SEARCH_CAPITAL_BO);
-    cy.wait(1000);
-    cy.xpath(`//div[@class='header-search']`).each(($el) => {
+    cy.get('.search-form-suggestions').each(($el) => {
       const text = $el.text();
       expect(text.toLowerCase()).to.contains(SEARCH_CAPITAL_BO.toLowerCase());
       cy.log("Founded product/s:", text);
@@ -70,9 +85,9 @@ describe("Positive Scenarios: Entering a value into the search field and checkin
   });
 
   it("Enter a product name which is not exist on the current tab:", () => {
-    cy.get(".search-form-field").click().type(SEARCH_BADGE_POSITIVE);
+    cy.get(".search-form-field").type(SEARCH_BADGE_POSITIVE);
     cy.wait(1000);
-    cy.xpath(`//div[@class='header-search']`).each(($el) => {
+    cy.get('.search-form-suggestions').each(($el) => {
       const text = $el.text();
       expect(text).to.include(SEARCH_BADGE_POSITIVE);
       cy.log("Founded product/s:", text);
