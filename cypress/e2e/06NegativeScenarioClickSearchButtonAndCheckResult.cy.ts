@@ -2,7 +2,7 @@ import { commonSetupBeforeVisitPage } from "../commonSetupBeforeVisitPage";
 import { commonSetupBeforeCookies } from "../commonSetupBeforeCookies";
 import axios from "axios";
 
-describe.only("Negative Scenarios: Click the Search button and check the result", () => {
+describe("Negative Scenarios: Click the Search button and check the result", () => {
   commonSetupBeforeVisitPage();
   commonSetupBeforeCookies();
 
@@ -47,7 +47,7 @@ describe.only("Negative Scenarios: Click the Search button and check the result"
     });
   });
 
-  it("search a space:", () => {
+  it.only("search a space:", () => {
     cy.on("uncaught:exception", (err, runnable) => {
       return false;
     });

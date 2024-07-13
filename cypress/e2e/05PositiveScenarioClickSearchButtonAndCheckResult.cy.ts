@@ -9,6 +9,7 @@ describe.only("Positive Scenarios: Click the Search button and check the result 
   const SEARCH_TEXT_NAVY_BOOTS = "[Example] Navy Boots 1";
   const SEARCH_INTEGER_11 = 11;
   const SEARCH_CAPITAL_BO = "BO";
+  
   it("search first 2 chars:", () => {
     cy.get('.search-form-field').type(SEARCH_PREFIX_BA);
     cy.xpath(`//button[@type='submit']`).click();

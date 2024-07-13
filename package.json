@@ -4,7 +4,7 @@
   "description": "test",
   "main": "index.js",
   "scripts": {
-    "runner": "cypress open  --e2e --browser chrome  "
+    "runner": "npx cypress open --e2e --browser chrome"
   },
   "keywords": [
     "cypress",
@@ -13,7 +13,7 @@
   "author": "deniz cakmak",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^13.12.0",
+    "cypress": "^13.13.0",
     "cypress-xpath": "^2.0.1",
     "typescript": "^5.5.2"
   },

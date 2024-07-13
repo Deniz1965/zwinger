@@ -2,7 +2,7 @@ import { commonSetupBeforeVisitPage } from "../commonSetupBeforeVisitPage";
 import { commonSetupBeforeCookies } from "../commonSetupBeforeCookies";
 import { commonSetupAfter } from "../commonSetupAfter";
 
-describe('negative scenarious', () => {
+describe('Click on the searched item', () => {
     commonSetupBeforeVisitPage();
     commonSetupBeforeCookies();
     commonSetupAfter();

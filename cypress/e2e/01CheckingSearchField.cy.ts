@@ -1,7 +1,7 @@
 import { commonSetupBeforeVisitPage } from '../commonSetupBeforeVisitPage';
 import { commonSetupBeforeCookies } from '../commonSetupBeforeCookies';
 
-describe.only ('test suite 1', () => {
+describe('Checking the Search Field', () => {
   commonSetupBeforeVisitPage();
   commonSetupBeforeCookies();
   it('check the search button', () => {
@@ -9,7 +9,6 @@ describe.only ('test suite 1', () => {
     if (cy.get('.header-search').should('be.visible')){
       cy.log('search button is visible');
     };
-
   })
 })
 

@@ -2,7 +2,7 @@ import { commonSetupBeforeVisitPage } from "../commonSetupBeforeVisitPage"
 import { commonSetupAfter } from "../commonSetupAfter";
 import { commonSetupBeforeCookies } from "../commonSetupBeforeCookies";
 
-describe("Positive Scenarios: Entering a value into the search field and checking the outputs ", () => {
+describe.only("Positive Scenarios: Entering a value into the search field and checking the outputs ", () => {
   commonSetupBeforeVisitPage();
   commonSetupAfter();
   commonSetupBeforeCookies();
@@ -86,8 +86,7 @@ describe("Positive Scenarios: Entering a value into the search field and checkin
 
   it("Enter a product name which is not exist on the current tab:", () => {
     cy.get(".search-form-field").type(SEARCH_BADGE_POSITIVE);
-    cy.wait(1000);
-    cy.get('.search-form-suggestions').each(($el) => {
+    cy.get('.search-form-suggestions', {timeout : 4000}).each(($el) => {
       const text = $el.text();
       expect(text).to.include(SEARCH_BADGE_POSITIVE);
       cy.log("Founded product/s:", text);
