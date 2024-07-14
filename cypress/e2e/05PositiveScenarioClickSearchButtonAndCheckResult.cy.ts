@@ -1,6 +1,6 @@
 import { commonSetupBeforeVisitPage } from "../commonSetupBeforeVisitPage";
 import { commonSetupBeforeCookies } from "../commonSetupBeforeCookies";
-describe.only("Positive Scenarios: Click the Search button and check the result ", () => {
+describe("Positive Scenarios: Click the Search button and check the result ", () => {
   commonSetupBeforeVisitPage();
   commonSetupBeforeCookies();
 
