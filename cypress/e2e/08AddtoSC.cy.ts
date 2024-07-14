@@ -1,6 +1,6 @@
 import { commonSetupBeforeVisitPage } from "../commonSetupBeforeVisitPage";
 import { commonSetupBeforeCookies } from "../commonSetupBeforeCookies";
-describe.only("check the opened tabs", () => {
+describe("check the opened tabs", () => {
   commonSetupBeforeVisitPage();
   commonSetupBeforeCookies();
 
