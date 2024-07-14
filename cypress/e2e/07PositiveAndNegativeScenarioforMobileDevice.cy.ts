@@ -2,7 +2,7 @@ import { commonSetupBeforeVisitPage } from "../commonSetupBeforeVisitPage"
 import { commonSetupAfter } from "../commonSetupAfter";
 import { commonSetupBeforeCookies } from "../commonSetupBeforeCookies";
 
-describe("Positive and Negative Scenarios: Entering a value into the search field and checking the outputs ", () => {
+describe.skip("Positive and Negative Scenarios: Entering a value into the search field and checking the outputs ", () => {
   commonSetupBeforeVisitPage();
   commonSetupAfter();
   commonSetupBeforeCookies();

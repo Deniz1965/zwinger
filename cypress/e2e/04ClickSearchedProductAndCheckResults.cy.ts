@@ -21,6 +21,7 @@ describe('Click on the searched item', () => {
             cy.log("url is wrong");
         }
         })
+        cy.get('.navigation-active').should('have.text', "prerelease");
         cy.xpath(`//h1[text()='variation']`).then(($el) => {
             const text = $el.text();
             if(text === SEARCH_ITEM_WITH_ONE_CATEGORY.toString()){

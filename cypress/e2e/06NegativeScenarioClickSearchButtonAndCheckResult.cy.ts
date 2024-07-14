@@ -1,6 +1,5 @@
 import { commonSetupBeforeVisitPage } from "../commonSetupBeforeVisitPage";
 import { commonSetupBeforeCookies } from "../commonSetupBeforeCookies";
-import axios from "axios";
 
 describe("Negative Scenarios: Click the Search button and check the result", () => {
   commonSetupBeforeVisitPage();
@@ -47,7 +46,7 @@ describe("Negative Scenarios: Click the Search button and check the result", () 
     });
   });
 
-  it.only("search a space:", () => {
+  it("search a space:", () => {
     cy.on("uncaught:exception", (err, runnable) => {
       return false;
     });
