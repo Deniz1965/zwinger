@@ -47,11 +47,11 @@ describe("Negative Scenarios: Click the Search button and check the result", () 
   });
 
   it("search a space:", () => {
+
+    cy.get(".search-form-field").type(SEARCH_SPACES);
     cy.on("uncaught:exception", (err, runnable) => {
       return false;
     });
-
-    cy.get(".search-form-field").type(SEARCH_SPACES);
     cy.wait(1000);
     cy.get(".search-form-icon.search-form-submit").click();
     cy.get(".search-no-result-form-headline")
@@ -60,10 +60,11 @@ describe("Negative Scenarios: Click the Search button and check the result", () 
   });
 
   it("search the product name/chars which has spaces at the end of the word", () => {
+   
+    cy.get(".search-form-field").type(SEARCH_SPACES_AFTER_CHAR);
     cy.on("uncaught:exception", (err, runnable) => {
       return false;
     });
-    cy.get(".search-form-field").type(SEARCH_SPACES_AFTER_CHAR);
     cy.wait(1000);
     cy.get(".search-form-icon.search-form-submit").click();
     cy.get(".search-no-result-form-headline")
@@ -72,10 +73,11 @@ describe("Negative Scenarios: Click the Search button and check the result", () 
   });
 
   it("search the product name/chars which has spaces at the begining of the word", () => {
+
+    cy.get(".search-form-field").type(SEARCH_SPACES_BEFORE_CHAR);
     cy.on("uncaught:exception", (err, runnable) => {
       return false;
     });
-    cy.get(".search-form-field").type(SEARCH_SPACES_BEFORE_CHAR);
     cy.wait(1000);
     cy.get(".search-form-icon.search-form-submit").click();
     cy.get(".search-no-result-form-headline")

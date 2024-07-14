@@ -15,17 +15,17 @@ describe('Negative Scenarios: Searching And Checking Outputs', () => {
     
     it("search only one char:", () => {
         cy.get('.search-form-field').type(SEARCH_ONE_CHAR);
-        cy.get('.search-form-suggestions').should('not.exist');
+        cy.get('.search-form-suggestions', {timeout : 4000}).should('not.exist');
     })
 
     it("search a space:", () => {
         cy.get('.search-form-field').type(SEARCH_SPACES);
-        cy.get('.search-form-suggestions').should('not.exist');
+        cy.get('.search-form-suggestions', {timeout : 4000}).should('not.exist');
     });
     
     it("search the product name/chars which has spaces at the begining of the word:", () => {
         cy.get('.search-form-field').type(SEARCH_SPACES_BEFORE_CHAR);
-        cy.get('search-form-suggestions').each(($el) => {
+        cy.get('.search-form-suggestions').each(($el) => {
             const text= $el.text();
             if(text.includes(SEARCH_SPACES_BEFORE_CHAR)){
                 cy.log(text);
@@ -48,7 +48,7 @@ describe('Negative Scenarios: Searching And Checking Outputs', () => {
             }
         })
     });
-    
+
     it("search not existing characters(at least 2):", () => {
         cy.get('.search-form-field').type(SEARCH_NOTEXIST_ITEM);
         cy.wait(2000);
