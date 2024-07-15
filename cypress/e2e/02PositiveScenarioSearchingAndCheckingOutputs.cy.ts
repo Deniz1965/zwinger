@@ -4,8 +4,8 @@ import { commonSetupBeforeCookies } from "../commonSetupBeforeCookies";
 
 describe("Positive Scenarios: Entering a value into the search field and checking the outputs ", () => {
   commonSetupBeforeVisitPage();
-  commonSetupAfter();
   commonSetupBeforeCookies();
+  commonSetupAfter();
 
   const SEARCH_PREFIX_BA = "ba";
 
