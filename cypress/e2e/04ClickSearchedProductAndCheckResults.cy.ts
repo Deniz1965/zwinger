@@ -10,7 +10,7 @@ describe('Click on the searched item', () => {
     it("Search item which is linked only one category", () => {
         cy.get('.search-form-field').type(SEARCH_ITEM_WITH_ONE_CATEGORY);
         cy.wait(2000);
-        cy.get('.search-form-suggestions').should('exist').should('be.visible').click();
+        cy.get('.search-form-suggestions').should('be.visible').click();
         cy.wait(3000);
         const expectedURL= "https://zwinger.pm.epages.com/p/variation";
         cy.url().then(currentURL => {
