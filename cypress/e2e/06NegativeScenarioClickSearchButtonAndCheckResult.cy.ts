@@ -27,9 +27,7 @@ describe("Negative Scenarios: Click the Search button and check the result", () 
           cy.wait(1000);
           // Recursively call the function to check for the button again
           checkAndClickShowMoreButton();
-        } else {
-          cy.log('The "Show more" button does not exist.');
-        }
+        } 
       });
     };
 
@@ -40,9 +38,7 @@ describe("Negative Scenarios: Click the Search button and check the result", () 
       if (expect(text).to.include(SEARCH_ONE_CHAR)) {
         cy.log("Founded product/s:", text);
         cy.log("Items are matching with the expected ones");
-      } else {
-        cy.log("they are not matching");
-      }
+      } 
     });
   });
 

@@ -17,9 +17,6 @@ describe('Click on the searched item', () => {
         if(currentURL === expectedURL){
             cy.log("Url is correct");
         }
-        else{
-            cy.log("url is wrong");
-        }
         })
         cy.get('.navigation-active').should('have.text', "prerelease");
         cy.xpath(`//h1[text()='variation']`).then(($el) => {

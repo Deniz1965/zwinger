@@ -27,9 +27,6 @@ describe("Positive Scenarios: Entering a value into the search field and checkin
         if (text.includes(SEARCH_PREFIX_BA)) {
         cy.log(text);
         }
-        else{
-          cy.log('not found');
-        }
       })
     })
   });
@@ -41,9 +38,6 @@ describe("Positive Scenarios: Entering a value into the search field and checkin
         const text = $el.text();
         if(text.includes(SEARCH_TEXT_OO)){
           cy.log(text)
-        }
-        else{
-          cy.log('not found');
         }
       })
     })
@@ -66,9 +60,6 @@ describe("Positive Scenarios: Entering a value into the search field and checkin
        const text = $el.text();
        if(text.includes(SEARCH_INTEGER_11.toString())){
          cy.log(SEARCH_INTEGER_11.toString());
-       }
-       else{
-         cy.log('not exist')
        }
      })
     })

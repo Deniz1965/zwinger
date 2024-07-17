@@ -30,9 +30,6 @@ describe('Negative Scenarios: Searching And Checking Outputs', () => {
             if(text.includes(SEARCH_SPACES_BEFORE_CHAR)){
                 cy.log(text);
             }
-            else{
-                cy.log("element is not found");
-            }
         })
     });
 
@@ -42,9 +39,6 @@ describe('Negative Scenarios: Searching And Checking Outputs', () => {
             const text= $el.text();
             if(text.includes(SEARCH_SPACES_AFTER_CHAR)){
                 cy.log(text);
-            }
-            else{
-                cy.log("element is not found");
             }
         })
     });

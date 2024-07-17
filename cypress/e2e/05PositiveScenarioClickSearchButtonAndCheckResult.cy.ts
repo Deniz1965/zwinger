@@ -25,9 +25,6 @@ describe("Positive Scenarios: Click the Search button and check the result ", ()
         if(text.includes(SEARCH_PREFIX_BA)){
           cy.log("found");
         }
-        else{
-          cy.log("not found");
-        }
       })
     })
 
